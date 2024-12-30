@@ -1,6 +1,13 @@
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
-import { Radius, radiusMap, Size, sizeMap } from "./types/type";
+import {
+  IconPosition,
+  Radius,
+  radiusMap,
+  Size,
+  sizeIconMap,
+  sizeMap,
+} from "./types/type";
 
 interface HDSButtonProps {
   block?: boolean;
@@ -10,6 +17,9 @@ interface HDSButtonProps {
   radius?: keyof typeof radiusMap;
   outlined?: boolean;
   disabled?: boolean;
+  icon?: React.ReactNode | string;
+  iconPosition?: IconPosition;
+  onlyIcon?: boolean;
   handleClick: () => void;
 }
 
@@ -21,18 +31,24 @@ const StyledButton = styled.button<{
   radius: Radius;
   outlined: boolean;
   disabled: boolean;
+  iconPosition: IconPosition;
+  onlyIcon: boolean;
 }>`
-  display: ${(props) => (props.block ? "block" : "inline-block")};
+  position: relative;
+  display: ${(props) => (props.block ? "flex" : "inline-flex")};
+  justify-content: center;
+  align-items: center;
   width: ${(props) => (props.block ? "100%" : "auto")};
-  background-color: ${(props) =>
-    props.outlined ? "transparent" : props.backgroundColor};
-  color: ${(props) => props.color};
+  padding: ${(props) => (props.onlyIcon ? "0" : sizeMap[props.size].padding)};
   border: ${(props) => (props.outlined ? `1px solid ${props.color}` : "none")};
   border-radius: ${(props) => radiusMap[props.radius]};
-  transition: opacity 0.2s ease;
-  padding: ${(props) => sizeMap[props.size].padding};
+  background-color: ${(props) =>
+    props.outlined ? "transparent" : props.backgroundColor};
   font-size: ${(props) => sizeMap[props.size].fontSize};
-  box-sizing: "border-box";
+  color: ${(props) => props.color};
+  text-align: center;
+  box-sizing: border-box;
+  transition: opacity 0.2s ease;
   cursor: pointer;
 
   &:hover {
@@ -42,6 +58,16 @@ const StyledButton = styled.button<{
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  & > svg,
+  & > img {
+    width: ${(props) => sizeIconMap[props.size]}px;
+    height: ${(props) => sizeIconMap[props.size]}px;
+    margin-right: ${(props) =>
+      props.iconPosition === "left" && !props.onlyIcon ? "8px" : "0"};
+    margin-left: ${(props) =>
+      props.iconPosition === "right" && !props.onlyIcon ? "8px" : "0"};
   }
 `;
 
@@ -54,8 +80,17 @@ function HDSButton({
   radius = "none",
   outlined = false,
   disabled = false,
+  icon,
+  iconPosition = "left",
+  onlyIcon = false,
   handleClick,
 }: PropsWithChildren<HDSButtonProps>) {
+  const renderIcon = () => {
+    if (icon && typeof icon === "string") {
+      return <img src={icon} alt='icon' />;
+    }
+    return icon;
+  };
   return (
     <StyledButton
       block={block}
@@ -65,9 +100,13 @@ function HDSButton({
       radius={radius}
       outlined={outlined}
       disabled={disabled}
+      iconPosition={iconPosition}
+      onlyIcon={onlyIcon}
       onClick={handleClick}
     >
-      {children}
+      {iconPosition === "left" && renderIcon()}
+      {!onlyIcon && children}
+      {iconPosition === "right" && renderIcon()}
     </StyledButton>
   );
 }

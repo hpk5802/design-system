@@ -22,3 +22,13 @@ export const radiusMap = {
 };
 
 export type Radius = keyof typeof radiusMap;
+
+export type IconPosition = "left" | "right";
+
+export const sizeIconMap = {
+  xs: 16,
+  sm: 17,
+  md: 20,
+  lg: 24,
+  xl: 30,
+};

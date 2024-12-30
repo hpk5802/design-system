@@ -37,6 +37,19 @@ const meta: Meta<typeof HDSButton> = {
       escription:
         "true일 경우, 버튼이 비활성화되어 클릭할 수 없으며, 비활성화된 스타일이 적용됩니다.",
     },
+    icon: {
+      control: "text",
+      description: "버튼에 표시할 아이콘 또는 아이콘의 경로",
+    },
+    iconPosition: {
+      control: { type: "select" },
+      options: ["left", "right"],
+      description: "아이콘의 위치 (왼쪽 또는 오른쪽)",
+    },
+    onlyIcon: {
+      control: { type: "boolean" },
+      description: "true일 경우, 버튼에 텍스트 없이 아이콘만 표시합니다.",
+    },
     handleClick: {
       action: "clicked",
       description: "버튼을 클릭했을 때 발생하는 액션입니다.",
@@ -58,5 +71,8 @@ export const Default: Story = {
     radius: "none",
     outlined: false,
     disabled: false,
+    icon: "/public/ic_setting.svg",
+    iconPosition: "left",
+    onlyIcon: false,
   },
 };
