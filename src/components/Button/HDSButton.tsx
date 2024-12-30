@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
 import {
+  ColorScheme,
+  colorSchemes,
+  ColorSchemes,
   IconPosition,
   Radius,
   radiusMap,
@@ -12,8 +15,7 @@ import {
 interface HDSButtonProps {
   block?: boolean;
   size?: Size;
-  backgroundColor?: string;
-  color?: string;
+  colorScheme?: ColorSchemes;
   radius?: keyof typeof radiusMap;
   outlined?: boolean;
   disabled?: boolean;
@@ -26,13 +28,12 @@ interface HDSButtonProps {
 const StyledButton = styled.button<{
   block: boolean;
   size: Size;
-  backgroundColor: string;
-  color: string;
   radius: Radius;
   outlined: boolean;
   disabled: boolean;
   iconPosition: IconPosition;
   onlyIcon: boolean;
+  colorScheme: ColorScheme;
 }>`
   position: relative;
   display: ${(props) => (props.block ? "flex" : "inline-flex")};
@@ -40,23 +41,27 @@ const StyledButton = styled.button<{
   align-items: center;
   width: ${(props) => (props.block ? "100%" : "auto")};
   padding: ${(props) => (props.onlyIcon ? "0" : sizeMap[props.size].padding)};
-  border: ${(props) => (props.outlined ? `1px solid ${props.color}` : "none")};
+  border: ${(props) =>
+    props.outlined ? `1px solid ${props.colorScheme.backgroundColor}` : "none"};
   border-radius: ${(props) => radiusMap[props.radius]};
   background-color: ${(props) =>
-    props.outlined ? "transparent" : props.backgroundColor};
+    props.outlined ? "transparent" : props.colorScheme.backgroundColor};
   font-size: ${(props) => sizeMap[props.size].fontSize};
-  color: ${(props) => props.color};
+  color: ${(props) =>
+    props.outlined
+      ? props.colorScheme.backgroundColor
+      : props.colorScheme.color};
   text-align: center;
   box-sizing: border-box;
   transition: opacity 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    opacity: 0.8;
+    background-color: ${(props) => props.colorScheme.hover};
   }
 
   &:disabled {
-    opacity: 0.5;
+    background-color: ${(props) => props.colorScheme.disabled};
     cursor: not-allowed;
   }
 
@@ -75,8 +80,7 @@ function HDSButton({
   children,
   block = false,
   size = "md",
-  backgroundColor = "#fff",
-  color = "#000",
+  colorScheme = "primaryButton",
   radius = "none",
   outlined = false,
   disabled = false,
@@ -95,8 +99,7 @@ function HDSButton({
     <StyledButton
       block={block}
       size={size}
-      backgroundColor={backgroundColor}
-      color={color}
+      colorScheme={colorSchemes[colorScheme]}
       radius={radius}
       outlined={outlined}
       disabled={disabled}

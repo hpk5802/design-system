@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import HDSButton from "./HDSButton";
-import { radiusMap, sizeMap } from "./types/type";
+import { colorSchemes, radiusMap, sizeMap } from "./types/type";
 
 const meta: Meta<typeof HDSButton> = {
   title: "Component/HDSButton",
@@ -17,9 +17,10 @@ const meta: Meta<typeof HDSButton> = {
       description:
         "버튼의 크기를 설정합니다. 옵션: 'xs', 'sm', 'md', 'lg', 'xl'",
     },
-    backgroundColor: {
-      control: "color",
-      description: "버튼의 배경 색을 설정합니다.",
+    colorScheme: {
+      control: { type: "select" },
+      options: Object.keys(colorSchemes),
+      description: "버튼 색상 조합을 선택하세요.",
     },
     radius: {
       control: { type: "select" },
@@ -30,7 +31,7 @@ const meta: Meta<typeof HDSButton> = {
     outlined: {
       control: { type: "boolean" },
       description:
-        "true일 경우, 버튼이 bg 대신 테두리만 있는 아웃라인 스타일로 표시됩니다. 테두리 색은 글자 색과 같습니다.",
+        "true일 경우, 버튼이 bg 대신 테두리만 있는 아웃라인 스타일로 표시됩니다.",
     },
     disabled: {
       control: { type: "boolean" },
@@ -66,8 +67,7 @@ export const Default: Story = {
     children: "Button",
     block: false,
     size: "md",
-    backgroundColor: "#000",
-    color: "#fff",
+    colorScheme: "defaultButton",
     radius: "none",
     outlined: false,
     disabled: false,

@@ -1,3 +1,51 @@
+export type ColorScheme = {
+  color: string;
+  backgroundColor: string;
+  hover: string;
+  disabled: string;
+};
+
+export const colorSchemes = {
+  primaryButton: {
+    color: "#FFFFFF",
+    backgroundColor: "#007BFF",
+    hover: "#0056b3",
+    disabled: "#A0C4FF",
+  },
+  secondaryButton: {
+    color: "#fff",
+    backgroundColor: "#6c757d",
+    hover: "#5a6268",
+    disabled: "#d6d8db",
+  },
+  warningButton: {
+    color: "#212529",
+    backgroundColor: "#ffc107",
+    hover: "#e0a800",
+    disabled: "#f8d7da",
+  },
+  successButton: {
+    color: "#FFFFFF",
+    backgroundColor: "#28A745",
+    hover: "#218838",
+    disabled: "#A9D6A2",
+  },
+  dangerButton: {
+    color: "#fff",
+    backgroundColor: "#dc3545",
+    hover: "#c82333",
+    disabled: "#f8d7da",
+  },
+  defaultButton: {
+    color: "#FFFFFF",
+    backgroundColor: "#6C757D",
+    hover: "#5A6268",
+    disabled: "#D6D8DB",
+  },
+};
+
+export type ColorSchemes = keyof typeof colorSchemes;
+
 export const sizeMap = {
   xs: { fontSize: "12px", padding: "8px 12px" },
   sm: { fontSize: "14px", padding: "10px 16px" },
