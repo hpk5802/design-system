@@ -44,6 +44,10 @@ const ModalOverlay = styled.div<{
 const ModalContainer = styled.div<{ position: modalPosition; sort: modalSort }>`
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
   max-width: 1000px;
   width: 80%;
   max-height: 80%;
@@ -69,6 +73,7 @@ const ModalContainer = styled.div<{ position: modalPosition; sort: modalSort }>`
 
 const ModalHeader = styled.div<{ hasCloseBtn?: boolean; sort: modalSort }>`
   display: -webkit-box;
+  flex-shrink: 0;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -84,15 +89,34 @@ const ModalHeader = styled.div<{ hasCloseBtn?: boolean; sort: modalSort }>`
 `;
 
 const ModalBody = styled.div<{ header: string; hasCloseBtn: boolean }>`
+  overflow-y: auto;
+  flex-grow: 1;
+
   margin-top: ${({ header, hasCloseBtn }) => {
     if (header) return '0px';
     else if (hasCloseBtn) return '26px';
   }};
   padding: 10px 0;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ccc;
+    border-radius: 2px;
+  }
 `;
 
 const ModalFooter = styled.div`
   display: flex;
+  flex-shrink: 0;
   justify-content: flex-end;
   gap: 10px;
 `;
