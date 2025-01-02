@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { modalPosition, modalSort } from "./types/type";
-import { ReactNode } from "react";
+import styled from '@emotion/styled';
+import { modalPosition, modalSort } from './types/type';
+import { ReactNode } from 'react';
 
 interface HDSModalProps {
   zIndex?: number;
@@ -21,12 +21,12 @@ const ModalOverlay = styled.div<{
   justify-content: center;
   align-items: ${({ position }) => {
     switch (position) {
-      case "top":
-        return "flex-start";
-      case "center":
-        return "center";
-      case "bottom":
-        return "flex-end";
+      case 'top':
+        return 'flex-start';
+      case 'center':
+        return 'center';
+      case 'bottom':
+        return 'flex-end';
     }
   }};
 
@@ -55,25 +55,26 @@ const ModalContainer = styled.div<{ position: modalPosition; sort: modalSort }>`
 
   transform: ${({ position }) => {
     switch (position) {
-      case "top":
-        return "translateY(30px)";
-      case "bottom":
-        return "translateY(-30px)";
-      case "center":
-        return "translateY(0)";
+      case 'top':
+        return 'translateY(30px)';
+      case 'bottom':
+        return 'translateY(-30px)';
+      case 'center':
+        return 'translateY(0)';
     }
   }};
 
-  text-align: ${({ sort }) => (sort === "center" ? "center" : "left")};
+  text-align: ${({ sort }) => (sort === 'center' ? 'center' : 'left')};
 `;
 
-const ModalHeader = styled.div<{ hasCloseBtn?: boolean }>`
+const ModalHeader = styled.div<{ hasCloseBtn?: boolean; sort: modalSort }>`
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 
-  padding-right: ${({ hasCloseBtn }) => (hasCloseBtn ? "30px" : "0px")};
+  padding-left: ${({ sort }) => (sort === 'center' ? '30px' : '0px')};
+  padding-right: ${({ hasCloseBtn }) => (hasCloseBtn ? '30px' : '0px')};
 
   border-bottom: 1px solid #ddd;
 
@@ -84,8 +85,8 @@ const ModalHeader = styled.div<{ hasCloseBtn?: boolean }>`
 
 const ModalBody = styled.div<{ header: string; hasCloseBtn: boolean }>`
   margin-top: ${({ header, hasCloseBtn }) => {
-    if (header) return "0px";
-    else if (hasCloseBtn) return "26px";
+    if (header) return '0px';
+    else if (hasCloseBtn) return '26px';
   }};
   padding: 10px 0;
 `;
@@ -114,7 +115,7 @@ const CloseButton = styled.button`
 
   &::before,
   &::after {
-    content: "";
+    content: '';
     position: absolute;
 
     display: block;
@@ -138,8 +139,8 @@ const CloseButton = styled.button`
 function HDSModal({
   zIndex = 1,
   hasCloseBtn = true,
-  position = "center",
-  sort = "left",
+  position = 'center',
+  sort = 'left',
   header,
   body,
   footer,
@@ -154,10 +155,12 @@ function HDSModal({
       >
         {hasCloseBtn && <CloseButton onClick={handleClose} />}
         {header && (
-          <ModalHeader hasCloseBtn={hasCloseBtn}>{header}</ModalHeader>
+          <ModalHeader sort={sort} hasCloseBtn={hasCloseBtn}>
+            {header}
+          </ModalHeader>
         )}
         {body && (
-          <ModalBody header={header || ""} hasCloseBtn={hasCloseBtn}>
+          <ModalBody header={header || ''} hasCloseBtn={hasCloseBtn}>
             {body}
           </ModalBody>
         )}
