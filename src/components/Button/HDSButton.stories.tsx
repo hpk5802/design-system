@@ -3,7 +3,7 @@ import HDSButton from './HDSButton';
 import { colorSchemes, radiusMap, sizeMap } from './types/type';
 
 const meta: Meta<typeof HDSButton> = {
-  title: 'Component/HDSButton',
+  title: 'Components/HDSButton',
   component: HDSButton,
   argTypes: {
     block: {
