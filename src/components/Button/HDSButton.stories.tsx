@@ -79,6 +79,12 @@ export const Block: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
 export const PrimaryButton: Story = {
   args: {
     colorScheme: "primaryButton",
