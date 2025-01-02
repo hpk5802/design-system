@@ -56,13 +56,6 @@ const meta: Meta<typeof HDSButton> = {
       description: "버튼을 클릭했을 때 발생하는 액션입니다.",
     },
   },
-};
-
-export default meta;
-
-type Story = StoryObj<typeof HDSButton>;
-
-export const Default: Story = {
   args: {
     children: "Button",
     block: false,
@@ -71,8 +64,160 @@ export const Default: Story = {
     radius: "none",
     outlined: false,
     disabled: false,
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof HDSButton>;
+
+export const Default: Story = {};
+
+export const Block: Story = {
+  args: {
+    block: true,
+  },
+};
+
+export const PrimaryButton: Story = {
+  args: {
+    colorScheme: "primaryButton",
+  },
+};
+
+export const SecondaryButton: Story = {
+  args: {
+    colorScheme: "secondaryButton",
+  },
+};
+
+export const SuccessButton: Story = {
+  args: {
+    colorScheme: "successButton",
+  },
+};
+
+export const WarningButton: Story = {
+  args: {
+    colorScheme: "warningButton",
+  },
+};
+
+export const DangerButton: Story = {
+  args: {
+    colorScheme: "dangerButton",
+  },
+};
+
+export const XSmall: Story = {
+  args: {
+    size: "xs",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: "xs",
+  },
+};
+
+export const Mediumn: Story = {
+  args: {
+    size: "md",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: "lg",
+  },
+};
+
+export const XLarge: Story = {
+  args: {
+    size: "xl",
+  },
+};
+
+export const OutLined: Story = {
+  args: {
+    outlined: true,
+  },
+};
+
+export const Border3XSmall: Story = {
+  args: {
+    radius: "xxxs",
+  },
+};
+
+export const Border2XSmall: Story = {
+  args: {
+    radius: "xxs",
+  },
+};
+
+export const BorderXSmall: Story = {
+  args: {
+    radius: "xs",
+  },
+};
+
+export const BorderMedium: Story = {
+  args: {
+    radius: "md",
+  },
+};
+
+export const BorderLarge: Story = {
+  args: {
+    radius: "lg",
+  },
+};
+
+export const BorderXLarge: Story = {
+  args: {
+    radius: "xl",
+  },
+};
+
+export const Border2XLarge: Story = {
+  args: {
+    radius: "xxl",
+  },
+};
+
+export const BorderRound: Story = {
+  args: {
+    radius: "round",
+  },
+};
+
+export const BorderNone: Story = {
+  args: {
+    radius: "none",
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    colorScheme: "defaultButton",
     icon: "/public/ic_setting.svg",
     iconPosition: "left",
     onlyIcon: false,
+  },
+};
+
+export const IconPosRight: Story = {
+  args: {
+    ...WithIcon.args,
+    iconPosition: "right",
+  },
+};
+
+export const IconOnly: Story = {
+  args: {
+    ...WithIcon.args,
+    onlyIcon: true,
   },
 };
