@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { PropsWithChildren } from "react";
+import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
 import {
   ColorScheme,
   colorSchemes,
@@ -10,7 +10,7 @@ import {
   Size,
   sizeIconMap,
   sizeMap,
-} from "./types/type";
+} from './types/type';
 
 interface HDSButtonProps {
   block?: boolean;
@@ -36,62 +36,60 @@ const StyledButton = styled.button<{
   colorScheme: ColorScheme;
 }>`
   position: relative;
-  display: ${(props) => (props.block ? "flex" : "inline-flex")};
+  display: ${({ block }) => (block ? 'flex' : 'inline-flex')};
   justify-content: center;
   align-items: center;
-  width: ${(props) => (props.block ? "100%" : "auto")};
-  padding: ${(props) => (props.onlyIcon ? "0" : sizeMap[props.size].padding)};
-  border: ${(props) =>
-    props.outlined ? `1px solid ${props.colorScheme.backgroundColor}` : "none"};
-  border-radius: ${(props) => radiusMap[props.radius]};
-  background-color: ${(props) =>
-    props.outlined ? "transparent" : props.colorScheme.backgroundColor};
-  font-size: ${(props) => sizeMap[props.size].fontSize};
-  color: ${(props) =>
-    props.outlined
-      ? props.colorScheme.backgroundColor
-      : props.colorScheme.color};
+  width: ${({ block }) => (block ? '100%' : 'auto')};
+  padding: ${({ onlyIcon, size }) => (onlyIcon ? '0' : sizeMap[size].padding)};
+  border: ${({ outlined, colorScheme }) =>
+    outlined ? `1px solid ${colorScheme.backgroundColor}` : 'none'};
+  border-radius: ${({ radius }) => radiusMap[radius]};
+  background-color: ${({ outlined, colorScheme }) =>
+    outlined ? 'transparent' : colorScheme.backgroundColor};
+  font-size: ${({ size }) => sizeMap[size].fontSize};
+  color: ${({ outlined, colorScheme }) =>
+    outlined ? colorScheme.backgroundColor : colorScheme.color};
   text-align: center;
   box-sizing: border-box;
   transition: opacity 0.2s ease;
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => props.colorScheme.hover};
+    background-color: ${({ colorScheme }) => colorScheme.hover};
   }
 
   &:disabled {
-    background-color: ${(props) => props.colorScheme.disabled};
+    background-color: ${({ colorScheme }) => colorScheme.disabled};
     cursor: not-allowed;
   }
 
   & > svg,
   & > img {
-    width: ${(props) => sizeIconMap[props.size]}px;
-    height: ${(props) => sizeIconMap[props.size]}px;
-    margin-right: ${(props) =>
-      props.iconPosition === "left" && !props.onlyIcon ? "8px" : "0"};
-    margin-left: ${(props) =>
-      props.iconPosition === "right" && !props.onlyIcon ? "8px" : "0"};
+    width: ${({ size }) => sizeIconMap[size]}px;
+    height: ${({ size }) => sizeIconMap[size]}px;
+    margin-right: ${({ iconPosition, onlyIcon }) =>
+      iconPosition === 'left' && !onlyIcon ? '8px' : '0'};
+    margin-left: ${({ iconPosition, onlyIcon }) =>
+      iconPosition === 'right' && !onlyIcon ? '8px' : '0'};
   }
 `;
 
 function HDSButton({
   children,
   block = false,
-  size = "md",
-  colorScheme = "primaryButton",
-  radius = "none",
+  size = 'md',
+  colorScheme = 'primaryButton',
+  radius = 'none',
   outlined = false,
   disabled = false,
   icon,
-  iconPosition = "left",
+  iconPosition = 'left',
   onlyIcon = false,
   handleClick,
 }: PropsWithChildren<HDSButtonProps>) {
   const renderIcon = () => {
-    if (icon && typeof icon === "string") {
-      return <img src={icon} alt='icon' />;
+    if (icon && typeof icon === 'string') {
+      return <img src={icon} alt="icon" />;
     }
     return icon;
   };
@@ -107,9 +105,9 @@ function HDSButton({
       onlyIcon={onlyIcon}
       onClick={handleClick}
     >
-      {iconPosition === "left" && renderIcon()}
+      {iconPosition === 'left' && renderIcon()}
       {!onlyIcon && children}
-      {iconPosition === "right" && renderIcon()}
+      {iconPosition === 'right' && renderIcon()}
     </StyledButton>
   );
 }
