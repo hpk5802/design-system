@@ -7,7 +7,7 @@ export type ColorScheme = {
 
 export const colorSchemes = {
   primaryButton: {
-    color: "#FFFFFF",
+    color: "#fff",
     backgroundColor: "#007BFF",
     hover: "#0056b3",
     disabled: "#A0C4FF",
@@ -19,13 +19,13 @@ export const colorSchemes = {
     disabled: "#d6d8db",
   },
   warningButton: {
-    color: "#212529",
+    color: "#fff",
     backgroundColor: "#ffc107",
     hover: "#e0a800",
     disabled: "#f8d7da",
   },
   successButton: {
-    color: "#FFFFFF",
+    color: "#fff",
     backgroundColor: "#28A745",
     hover: "#218838",
     disabled: "#A9D6A2",
@@ -38,9 +38,9 @@ export const colorSchemes = {
   },
   defaultButton: {
     color: "#FFFFFF",
-    backgroundColor: "#6C757D",
-    hover: "#5A6268",
-    disabled: "#D6D8DB",
+    backgroundColor: "#7d51b5",
+    hover: "#9a82b9",
+    disabled: "#9483ab",
   },
 };
 
