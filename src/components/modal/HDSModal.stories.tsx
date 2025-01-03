@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import HDSModal from './HDSModal';
 import HDSButton from '../Button/HDSButton';
+import Center from '../decorators/Center';
 
 const meta: Meta<typeof HDSModal> = {
   title: 'Components/HDSModal',
@@ -10,11 +11,11 @@ const meta: Meta<typeof HDSModal> = {
   parameters: {
     docs: {
       story: {
-        inline: false,
         iframeHeight: 500,
       },
     },
   },
+  decorators: [(story) => <Center height={500}>{story()}</Center>],
   argTypes: {
     position: {
       control: 'select',
