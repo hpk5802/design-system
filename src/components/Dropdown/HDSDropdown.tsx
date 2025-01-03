@@ -1,8 +1,16 @@
 import styled from '@emotion/styled';
-import { Options, Position, positionMap, Size, sizeMap } from './types/type';
+import {
+  Options,
+  Position,
+  positionMap,
+  Size,
+  sizeMap,
+  Trigger,
+} from './types/type';
 import { useEffect, useRef, useState } from 'react';
 
 interface HDSDropdownProps {
+  trigger: Trigger;
   size?: Size;
   label: string;
   options: Options;
@@ -19,11 +27,14 @@ const StyledDropdown = styled.div<{ size: Size }>`
 const DropdownLabel = styled.div`
   width: 100%;
 
+  padding: 10px;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 
   cursor: pointer;
+  box-sizing: border-box;
 `;
 
 const OptionContainer = styled.ul<{ position: Position; isOpen: boolean }>`
@@ -41,7 +52,11 @@ const OptionContainer = styled.ul<{ position: Position; isOpen: boolean }>`
   list-style: none;
 `;
 
-const OptionWrap = styled.li``;
+const OptionWrap = styled.li`
+  & + li {
+    margin-top: 5px;
+  }
+`;
 
 const Option = styled.button<{ size: Size }>`
   display: block;
@@ -74,6 +89,7 @@ const Option = styled.button<{ size: Size }>`
 `;
 
 function HDSDropdown({
+  trigger = 'hover',
   label,
   size = 'md',
   options,
@@ -85,6 +101,18 @@ function HDSDropdown({
   const handleClick = (handler: () => void) => {
     setIsOpen(false);
     handler();
+  };
+
+  const handleMouseEnter = () => {
+    if (trigger === 'hover') {
+      setIsOpen(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (trigger === 'hover') {
+      setIsOpen(false);
+    }
   };
 
   // 외부 클릭 감지 & 드롭다운 닫기
@@ -105,8 +133,15 @@ function HDSDropdown({
   }, []);
 
   return (
-    <StyledDropdown ref={dropdownRef} size={size}>
-      <DropdownLabel onClick={() => setIsOpen((prev) => !prev)}>
+    <StyledDropdown
+      ref={dropdownRef}
+      size={size}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <DropdownLabel
+        onClick={() => trigger === 'click' && setIsOpen((prev) => !prev)}
+      >
         {label}
       </DropdownLabel>
       <OptionContainer isOpen={isOpen} position={position}>

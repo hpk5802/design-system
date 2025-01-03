@@ -1,3 +1,5 @@
+export type Trigger = 'hover' | 'click';
+
 export const sizeMap = {
   xs: '50px',
   sm: '70px',
@@ -19,56 +21,56 @@ export type Options = Option[];
 
 export const positionMap = {
   top_left: {
-    bottom: '105%',
+    bottom: '100%',
     left: 0,
   },
   top_right: {
-    bottom: '105%',
+    bottom: '100%',
     right: 0,
   },
   top_center: {
-    bottom: '105%',
+    bottom: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
   },
   bottom_left: {
-    top: '105%',
+    top: '100%',
     left: 0,
   },
   bottom_right: {
-    top: '105%',
+    top: '100%',
     right: 0,
   },
   bottom_center: {
-    top: '105%',
+    top: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
   },
   right_bottom: {
     top: 0,
-    left: '105%',
+    left: '100%',
   },
   right_center: {
     top: '50%',
-    left: '105%',
+    left: '100%',
     transform: 'translateY(-50%)',
   },
   right_top: {
     bottom: 0,
-    left: '105%',
+    left: '100%',
   },
   left_bottom: {
     top: 0,
-    right: '105%',
+    right: '100%',
   },
   left_center: {
     top: '50%',
-    right: '105%',
+    right: '100%',
     transform: 'translateY(-50%)',
   },
   left_top: {
     bottom: 0,
-    right: '105%',
+    right: '100%',
   },
 };
 

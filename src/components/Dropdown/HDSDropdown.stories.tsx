@@ -16,6 +16,11 @@ const meta: Meta<typeof HDSDropdown> = {
   },
   decorators: [(story) => <Center>{story()}</Center>],
   argTypes: {
+    trigger: {
+      control: 'select',
+      options: ['hover', 'click'],
+      description: '드롭다운 메뉴의 동작 방식을 설정합니다.',
+    },
     label: {
       control: 'text',
       description: '드롭다운 메뉴의 이름을 설정합니다.',
@@ -28,7 +33,7 @@ const meta: Meta<typeof HDSDropdown> = {
     options: {
       control: 'object',
       description:
-        '드롭다운 메뉴를 설정합니다. ({label: 메뉴 이름, handler: 메뉴 클릭 핸들러})',
+        '드롭다운 메뉴를 설정합니다. ({label: 메뉴 이름, disabled: 버튼 비활성화, handler: 메뉴 클릭 핸들러})',
     },
     position: {
       control: 'select',
@@ -54,6 +59,7 @@ type Story = StoryObj<typeof HDSDropdown>;
 
 export const Default: Story = {
   args: {
+    trigger: 'hover',
     label: '메뉴메뉴메뉴메뉴메뉴',
     size: 'md',
     options: defaultOptions,
