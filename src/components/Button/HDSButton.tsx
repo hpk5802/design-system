@@ -42,7 +42,8 @@ const StyledButton = styled.button<{
   justify-content: center;
   align-items: center;
   width: ${({ block }) => (block ? '100%' : 'auto')};
-  padding: ${({ onlyIcon, size }) => (onlyIcon ? '0' : sizeMap[size].padding)};
+  padding: ${({ onlyIcon, size }) =>
+    onlyIcon ? '5px' : sizeMap[size].padding};
   border: ${({ outlined, colorScheme }) =>
     outlined ? `1px solid ${colorScheme.backgroundColor}` : 'none'};
   border-radius: ${({ radius }) => radiusMap[radius]};
