@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import HDSButton from '../Button/HDSButton';
+import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
 interface HDSPaginationProps {
@@ -48,9 +48,9 @@ const PaginationButton = styled.button`
 `;
 
 function HDSPagination({
-  pageSize = 12,
-  paginationSize: InitialSize = 6,
-  showFirstAndLastButtons = true,
+  pageSize = 24,
+  paginationSize: InitialSize = 10,
+  showFirstAndLastButtons = false,
 }: HDSPaginationProps) {
   const paginationSize = InitialSize > 10 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
