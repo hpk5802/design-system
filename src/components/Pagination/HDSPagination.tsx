@@ -48,8 +48,9 @@ const PaginationButton = styled.button`
 
 function HDSPagination({
   pageSize = 12,
-  paginationSize = 6,
+  paginationSize: InitialSize = 6,
 }: HDSPaginationProps) {
+  const paginationSize = InitialSize > 10 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
   const [section, setSection] = useState(0);
   const [current, setCurrent] = useState(1);
@@ -71,6 +72,11 @@ function HDSPagination({
   const handlePageClick = (page: number) => {
     setCurrent(page);
   };
+
+  useEffect(() => {
+    setSection(0);
+    setCurrent(1);
+  }, [pageSize, paginationSize]);
 
   return (
     <PaginationContainer>
