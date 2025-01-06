@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 interface HDSPaginationProps {
   pageSize: number;
   paginationSize: number;
+  showFirstAndLastButtons: boolean;
 }
 
-const PaginationContainer = styled.div<{}>`
+const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -49,11 +50,22 @@ const PaginationButton = styled.button`
 function HDSPagination({
   pageSize = 12,
   paginationSize: InitialSize = 6,
+  showFirstAndLastButtons = true,
 }: HDSPaginationProps) {
   const paginationSize = InitialSize > 10 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
   const [section, setSection] = useState(0);
   const [current, setCurrent] = useState(1);
+
+  const handleFirstClick = () => {
+    setCurrent(1);
+    setSection(0);
+  };
+
+  const handleLastClick = () => {
+    setCurrent(pageSize);
+    setSection(totalPage);
+  };
 
   const handlePrevClick = () => {
     setCurrent((prev) => {
@@ -80,6 +92,17 @@ function HDSPagination({
 
   return (
     <PaginationContainer>
+      {showFirstAndLastButtons && (
+        <HDSButton
+          hasBg={false}
+          size="lg"
+          radius="xs"
+          onlyIcon
+          icon="double-left-arrow.png"
+          disabled={current === 1}
+          handleClick={handleFirstClick}
+        />
+      )}
       <HDSButton
         hasBg={false}
         size="lg"
@@ -121,6 +144,17 @@ function HDSPagination({
         disabled={current === pageSize}
         handleClick={handleNextClick}
       />
+      {showFirstAndLastButtons && (
+        <HDSButton
+          hasBg={false}
+          size="lg"
+          radius="xs"
+          onlyIcon
+          icon="double-right-arrow.png"
+          disabled={current === pageSize}
+          handleClick={handleLastClick}
+        />
+      )}
     </PaginationContainer>
   );
 }
