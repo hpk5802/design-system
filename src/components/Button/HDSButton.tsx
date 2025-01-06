@@ -16,6 +16,7 @@ interface HDSButtonProps {
   block?: boolean;
   size?: Size;
   colorScheme?: ColorSchemes;
+  hasBg?: boolean;
   radius?: keyof typeof radiusMap;
   outlined?: boolean;
   disabled?: boolean;
@@ -34,6 +35,7 @@ const StyledButton = styled.button<{
   iconPosition: IconPosition;
   onlyIcon: boolean;
   colorScheme: ColorScheme;
+  hasBg: boolean;
 }>`
   position: relative;
   display: ${({ block }) => (block ? 'flex' : 'inline-flex')};
@@ -44,8 +46,8 @@ const StyledButton = styled.button<{
   border: ${({ outlined, colorScheme }) =>
     outlined ? `1px solid ${colorScheme.backgroundColor}` : 'none'};
   border-radius: ${({ radius }) => radiusMap[radius]};
-  background-color: ${({ outlined, colorScheme }) =>
-    outlined ? 'transparent' : colorScheme.backgroundColor};
+  background-color: ${({ outlined, colorScheme, hasBg }) =>
+    outlined || !hasBg ? 'transparent' : colorScheme.backgroundColor};
   font-size: ${({ size }) => sizeMap[size].fontSize};
   color: ${({ outlined, colorScheme }) =>
     outlined ? colorScheme.backgroundColor : colorScheme.color};
@@ -79,6 +81,7 @@ function HDSButton({
   block = false,
   size = 'md',
   colorScheme = 'primaryButton',
+  hasBg = true,
   radius = 'none',
   outlined = false,
   disabled = false,
@@ -98,6 +101,7 @@ function HDSButton({
       block={block}
       size={size}
       colorScheme={colorSchemes[colorScheme]}
+      hasBg={hasBg}
       radius={radius}
       outlined={outlined}
       disabled={disabled}

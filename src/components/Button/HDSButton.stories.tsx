@@ -22,6 +22,10 @@ const meta: Meta<typeof HDSButton> = {
       options: Object.keys(colorSchemes),
       description: '버튼 색상 조합을 선택하세요.',
     },
+    hasBg: {
+      control: { type: 'boolean' },
+      description: '버튼의 background 색상 유무를 설정합니다.',
+    },
     radius: {
       control: { type: 'select' },
       options: Object.keys(radiusMap),
@@ -202,6 +206,14 @@ export const BorderRound: Story = {
 export const BorderNone: Story = {
   args: {
     radius: 'none',
+  },
+};
+
+export const NoBg: Story = {
+  args: {
+    ...Default.args,
+    icon: '/public/ic_setting.svg',
+    hasBg: false,
   },
 };
 
