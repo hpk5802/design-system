@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import HDSButton from '../Button/HDSButton';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface HDSPaginationProps {
   pageSize: number;
