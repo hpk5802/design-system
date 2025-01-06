@@ -54,31 +54,23 @@ function HDSPagination({
 }: HDSPaginationProps) {
   const paginationSize = InitialSize > 10 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
-  const [section, setSection] = useState(0);
   const [current, setCurrent] = useState(1);
+  const section = Math.floor((current - 1) / paginationSize);
 
   const handleFirstClick = () => {
     setCurrent(1);
-    setSection(0);
   };
 
   const handleLastClick = () => {
     setCurrent(pageSize);
-    setSection(totalPage);
   };
 
   const handlePrevClick = () => {
-    setCurrent((prev) => {
-      if (prev % paginationSize === 1) setSection((prev) => prev - 1);
-      return prev - 1;
-    });
+    setCurrent((prev) => prev - 1);
   };
 
   const handleNextClick = () => {
-    setCurrent((prev) => {
-      if (prev % paginationSize === 0) setSection((prev) => prev + 1);
-      return prev + 1;
-    });
+    setCurrent((prev) => prev + 1);
   };
 
   const handlePageClick = (page: number) => {
@@ -86,7 +78,6 @@ function HDSPagination({
   };
 
   useEffect(() => {
-    setSection(0);
     setCurrent(1);
   }, [pageSize, paginationSize]);
 
