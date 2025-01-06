@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import HDSButton from '../Button/HDSButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface HDSPaginationProps {
   pageSize: number;
@@ -47,10 +47,10 @@ const PaginationButton = styled.button`
 `;
 
 function HDSPagination({
-  pageSize = 13,
+  pageSize = 12,
   paginationSize = 6,
 }: HDSPaginationProps) {
-  const totalPage = Math.ceil(pageSize / paginationSize);
+  const totalPage = Math.ceil(pageSize / paginationSize) - 1;
   const [section, setSection] = useState(0);
   const [current, setCurrent] = useState(1);
 
@@ -87,7 +87,9 @@ function HDSPagination({
         {Array.from(
           {
             length:
-              section < totalPage ? paginationSize : pageSize % paginationSize,
+              section < totalPage
+                ? paginationSize
+                : pageSize - section * paginationSize,
           },
           (_, idx) => {
             const page = idx + 1 + paginationSize * section;
