@@ -57,23 +57,7 @@ function HDSPagination({
   const [current, setCurrent] = useState(1);
   const section = Math.floor((current - 1) / paginationSize);
 
-  const handleFirstClick = () => {
-    setCurrent(1);
-  };
-
-  const handleLastClick = () => {
-    setCurrent(pageSize);
-  };
-
-  const handlePrevClick = () => {
-    setCurrent((prev) => prev - 1);
-  };
-
-  const handleNextClick = () => {
-    setCurrent((prev) => prev + 1);
-  };
-
-  const handlePageClick = (page: number) => {
+  const handlePageChange = (page: number) => {
     setCurrent(page);
   };
 
@@ -91,7 +75,7 @@ function HDSPagination({
           onlyIcon
           icon="double-left-arrow.png"
           disabled={current === 1}
-          handleClick={handleFirstClick}
+          handleClick={() => handlePageChange(1)}
         />
       )}
       <HDSButton
@@ -101,7 +85,7 @@ function HDSPagination({
         onlyIcon
         icon="left-arrow.png"
         disabled={current === 1}
-        handleClick={handlePrevClick}
+        handleClick={() => handlePageChange(current - 1)}
       />
       <PaginationWrap>
         {Array.from(
@@ -118,7 +102,7 @@ function HDSPagination({
                 key={`pagination_${idx}`}
                 className={page === current ? 'active' : ''}
                 disabled={page === current}
-                onClick={() => handlePageClick(page)}
+                onClick={() => handlePageChange(page)}
               >
                 {page}
               </PaginationButton>
@@ -133,7 +117,7 @@ function HDSPagination({
         onlyIcon
         icon="right-arrow.png"
         disabled={current === pageSize}
-        handleClick={handleNextClick}
+        handleClick={() => handlePageChange(current + 1)}
       />
       {showFirstAndLastButtons && (
         <HDSButton
@@ -143,7 +127,7 @@ function HDSPagination({
           onlyIcon
           icon="double-right-arrow.png"
           disabled={current === pageSize}
-          handleClick={handleLastClick}
+          handleClick={() => handlePageChange(pageSize)}
         />
       )}
     </PaginationContainer>
