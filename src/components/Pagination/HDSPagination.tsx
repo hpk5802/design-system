@@ -6,6 +6,7 @@ interface HDSPaginationProps {
   pageSize: number;
   paginationSize: number;
   showFirstAndLastButtons: boolean;
+  onPageChange: (page: number) => void;
 }
 
 const PaginationContainer = styled.div`
@@ -51,6 +52,7 @@ function HDSPagination({
   pageSize = 24,
   paginationSize: InitialSize = 10,
   showFirstAndLastButtons = false,
+  onPageChange,
 }: HDSPaginationProps) {
   const paginationSize = InitialSize > 10 || InitialSize < 1 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
@@ -59,6 +61,7 @@ function HDSPagination({
 
   const handlePageChange = (page: number) => {
     setCurrent(page);
+    onPageChange(page);
   };
 
   useEffect(() => {
