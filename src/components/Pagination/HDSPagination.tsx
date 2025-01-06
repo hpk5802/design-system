@@ -74,7 +74,7 @@ function HDSPagination({
           radius="xs"
           onlyIcon
           icon="double-left-arrow.png"
-          disabled={current === 1}
+          disabled={current === 1 || pageSize < 1}
           handleClick={() => handlePageChange(1)}
         />
       )}
@@ -84,7 +84,7 @@ function HDSPagination({
         radius="xs"
         onlyIcon
         icon="left-arrow.png"
-        disabled={current === 1}
+        disabled={current === 1 || pageSize < 1}
         handleClick={() => handlePageChange(current - 1)}
       />
       <PaginationWrap>
@@ -116,7 +116,7 @@ function HDSPagination({
         radius="xs"
         onlyIcon
         icon="right-arrow.png"
-        disabled={current === pageSize}
+        disabled={current === pageSize || pageSize < 1}
         handleClick={() => handlePageChange(current + 1)}
       />
       {showFirstAndLastButtons && (
@@ -126,7 +126,7 @@ function HDSPagination({
           radius="xs"
           onlyIcon
           icon="double-right-arrow.png"
-          disabled={current === pageSize}
+          disabled={current === pageSize || pageSize < 1}
           handleClick={() => handlePageChange(pageSize)}
         />
       )}
