@@ -52,7 +52,7 @@ function HDSPagination({
   paginationSize: InitialSize = 10,
   showFirstAndLastButtons = false,
 }: HDSPaginationProps) {
-  const paginationSize = InitialSize > 10 ? 10 : InitialSize;
+  const paginationSize = InitialSize > 10 || InitialSize < 1 ? 10 : InitialSize;
   const totalPage = Math.ceil(pageSize / paginationSize) - 1;
   const [current, setCurrent] = useState(1);
   const section = Math.floor((current - 1) / paginationSize);
