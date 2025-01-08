@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import HDSModal from './HDSModal';
 import HDSButton from '../Button/HDSButton';
 import Center from '../decorators/Center';
+import useModal from '../../hooks/useModal';
 
 const meta: Meta<typeof HDSModal> = {
   title: 'Components/HDSModal',
@@ -41,6 +42,7 @@ const meta: Meta<typeof HDSModal> = {
     },
     body: { control: 'object', description: '바디(콘텐츠 영역) 내용' },
     footer: { control: 'object', description: '푸터(버튼 영역) 내용' },
+    isOpen: { control: 'boolean' },
     handleClose: {
       action: 'clicked',
       description: '모달을 닫을 때 발생하는 액션입니다.',
@@ -109,15 +111,14 @@ export const Default: Story = {
     body: <div>모달 바디</div>,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && <HDSModal {...args} handleClose={handleClose} />}
+        <HDSModal {...args} isOpen={isOpen} handleClose={closeModal} />
       </>
     );
   },
@@ -129,21 +130,19 @@ export const WithoutCloseBtn: Story = {
     hasCloseBtn: false,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && (
-          <HDSModal
-            {...args}
-            handleClose={handleClose}
-            footer={<FooterWithCloseButtons handleClose={handleClose} />}
-          />
-        )}
+        <HDSModal
+          {...args}
+          isOpen={isOpen}
+          handleClose={closeModal}
+          footer={<FooterWithCloseButtons handleClose={closeModal} />}
+        />
       </>
     );
   },
@@ -156,15 +155,14 @@ export const PositionTop: Story = {
     body: <div>모달 바디</div>,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && <HDSModal {...args} handleClose={handleClose} />}
+        <HDSModal {...args} isOpen={isOpen} handleClose={closeModal} />
       </>
     );
   },
@@ -177,15 +175,14 @@ export const PositionBottom: Story = {
     body: <div>모달 바디</div>,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && <HDSModal {...args} handleClose={handleClose} />}
+        <HDSModal {...args} isOpen={isOpen} handleClose={closeModal} />
       </>
     );
   },
@@ -197,15 +194,14 @@ export const AlignCenter: Story = {
     sort: 'center',
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && <HDSModal {...args} handleClose={handleClose} />}
+        <HDSModal {...args} isOpen={isOpen} handleClose={closeModal} />
       </>
     );
   },
@@ -217,15 +213,14 @@ export const WithoutHeader: Story = {
     hasCloseBtn: false,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && <HDSModal {...args} handleClose={handleClose} />}
+        <HDSModal {...args} isOpen={isOpen} handleClose={closeModal} />
       </>
     );
   },
@@ -238,21 +233,19 @@ export const WithFooterButton: Story = {
     body: <div>모달 바디</div>,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && (
-          <HDSModal
-            {...args}
-            handleClose={handleClose}
-            footer={<FooterWithCloseButton handleClose={handleClose} />}
-          />
-        )}
+        <HDSModal
+          {...args}
+          isOpen={isOpen}
+          handleClose={closeModal}
+          footer={<FooterWithCloseButton handleClose={closeModal} />}
+        />
       </>
     );
   },
@@ -265,21 +258,19 @@ export const WithFooterButtons: Story = {
     body: <div>모달 바디</div>,
   },
   render: (args) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleClose = () => setIsOpen(false);
+    const { isOpen, openModal, closeModal } = useModal();
 
     return (
       <>
-        <HDSButton radius="md" handleClick={() => setIsOpen(true)}>
+        <HDSButton radius="md" handleClick={openModal}>
           모달 열기
         </HDSButton>
-        {isOpen && (
-          <HDSModal
-            {...args}
-            handleClose={handleClose}
-            footer={<FooterWithCloseButtons handleClose={handleClose} />}
-          />
-        )}
+        <HDSModal
+          {...args}
+          isOpen={isOpen}
+          handleClose={closeModal}
+          footer={<FooterWithCloseButtons handleClose={closeModal} />}
+        />
       </>
     );
   },
