@@ -10,10 +10,11 @@ interface HDSModalProps {
   header?: string;
   body?: ReactNode;
   footer?: ReactNode;
+  isOpen: boolean;
   handleClose: () => void;
 }
 
-const ModalOverlay = styled.div<{
+const Modal = styled.div<{
   position: modalPosition;
   zIndex: number;
 }>`
@@ -34,6 +35,15 @@ const ModalOverlay = styled.div<{
   top: 0;
   left: 0;
   z-index: ${({ zIndex }) => zIndex || 1};
+
+  width: 100%;
+  height: 100%;
+`;
+
+const ModalOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
 
   width: 100%;
   height: 100%;
@@ -168,10 +178,14 @@ function HDSModal({
   header,
   body,
   footer,
+  isOpen = false,
   handleClose,
 }: HDSModalProps) {
+  if (!isOpen) return null;
+
   return (
-    <ModalOverlay zIndex={zIndex} position={position} onClick={handleClose}>
+    <Modal zIndex={zIndex} position={position}>
+      <ModalOverlay onClick={handleClose} />
       <ModalContainer
         position={position}
         sort={sort}
@@ -190,7 +204,7 @@ function HDSModal({
         )}
         {footer && <ModalFooter>{footer}</ModalFooter>}
       </ModalContainer>
-    </ModalOverlay>
+    </Modal>
   );
 }
 
