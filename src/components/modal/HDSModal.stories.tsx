@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import HDSModal from './HDSModal';
 import HDSButton from '../Button/HDSButton';
@@ -110,7 +109,7 @@ export const Default: Story = {
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -129,7 +128,7 @@ export const WithoutCloseBtn: Story = {
     ...Default.args,
     hasCloseBtn: false,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -154,7 +153,7 @@ export const PositionTop: Story = {
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -174,7 +173,7 @@ export const PositionBottom: Story = {
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -193,7 +192,7 @@ export const AlignCenter: Story = {
     ...Default.args,
     sort: 'center',
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -212,7 +211,7 @@ export const WithoutHeader: Story = {
     body: <div>헤더 없는 모달</div>,
     hasCloseBtn: false,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -232,7 +231,7 @@ export const WithFooterButton: Story = {
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -257,7 +256,7 @@ export const WithFooterButtons: Story = {
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
-  render: (args) => {
+  render: function Render(args) {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
