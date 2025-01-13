@@ -33,8 +33,9 @@ function HDSToggle({ isActive = false, handleClick }: HDSToggleProps) {
 
     transform: ${({ isActive }) => `translateX(${isActive ? '22px' : 0})`};
   `;
+
   return (
-    <ToggleContainer isActive={isActive} onClick={handleClick}>
+    <ToggleContainer isActive={isActive} onClick={handleClick} role="switch">
       <ToggleSwitchHandle isActive={isActive} />
     </ToggleContainer>
   );
