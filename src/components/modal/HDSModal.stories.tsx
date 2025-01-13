@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { useArgs } from '@storybook/preview-api';
 import HDSModal from './HDSModal';
 import HDSButton from '../Button/HDSButton';
 import Center from '../decorators/Center';
@@ -105,12 +106,21 @@ const FooterWithCloseButtons = ({
 
 export const Default: Story = {
   args: {
+    isOpen: false,
     position: 'center',
     header: '모달 헤더',
     body: <div>모달 바디</div>,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -129,7 +139,15 @@ export const WithoutCloseBtn: Story = {
     hasCloseBtn: false,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -154,7 +172,15 @@ export const PositionTop: Story = {
     body: <div>모달 바디</div>,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -174,7 +200,15 @@ export const PositionBottom: Story = {
     body: <div>모달 바디</div>,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -193,7 +227,15 @@ export const AlignCenter: Story = {
     sort: 'center',
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -212,7 +254,15 @@ export const WithoutHeader: Story = {
     hasCloseBtn: false,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -232,7 +282,15 @@ export const WithFooterButton: Story = {
     body: <div>모달 바디</div>,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
@@ -257,7 +315,15 @@ export const WithFooterButtons: Story = {
     body: <div>모달 바디</div>,
   },
   render: function Render(args) {
-    const { isOpen, openModal, closeModal } = useModal();
+    const [{ isOpen }, updateArgs] = useArgs();
+
+    const openModal = () => {
+      updateArgs({ isOpen: true });
+    };
+
+    const closeModal = () => {
+      updateArgs({ isOpen: false });
+    };
 
     return (
       <>
